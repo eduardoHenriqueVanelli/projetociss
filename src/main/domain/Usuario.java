@@ -2,8 +2,8 @@ package main.domain;
 
 public class Usuario {
     private int id;
-    private int usuario;
-    private int senha;
+    private String usuario;
+    private String senha;
     private int idVendedor;
 
     public int getId() {
@@ -14,19 +14,19 @@ public class Usuario {
         this.id = id;
     }
 
-    public int getUsuario() {
+    public String getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(int usuario) {
+    public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 
-    public int getSenha() {
+    public String getSenha() {
         return senha;
     }
 
-    public void setSenha(int senha) {
+    public void setSenha(String senha) {
         this.senha = senha;
     }
 

@@ -1,12 +1,17 @@
 package main.service;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.Scanner;
+import main.Repository.UsuarioRepository;
+import main.domain.Usuario;
+
+import java.sql.SQLException;
 
 public class UsuarioService {
-    Scanner sc = new Scanner(System.in);
-    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+   public boolean existeNoBanco(String usuario) throws SQLException {
+       UsuarioRepository usuarioRepository = new UsuarioRepository();
+       Usuario usuarioBanco = usuarioRepository.buscarUsuarioPeloNome(usuario);
+       return usuarioBanco != null;
+   }
+
 
 
 }
