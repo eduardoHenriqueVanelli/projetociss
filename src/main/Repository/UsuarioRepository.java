@@ -34,7 +34,7 @@ public class UsuarioRepository {
 
     }
 
-    public void salvarUsuario(Usuario usuario) {
+    public void inserirUsuario(Usuario usuario) {
         PreparedStatement preparedStatement = null;
         Conexao conexao = new Conexao();
         Connection connection = conexao.getConexao();
@@ -74,5 +74,35 @@ public class UsuarioRepository {
         }
         System.out.println("Usuario não encontrado");
 
+    }
+
+    public void updateUsuario(Usuario usuarioBanco) {
+        PreparedStatement preparedStatement = null;
+        Conexao conexao = new Conexao();
+        Connection connection = conexao.getConexao();
+        try {
+            preparedStatement = connection.prepareStatement("UPDATE DBA.USUARIO_TR30 SET USUARIO = ?, SENHA = ? WHERE ID = ?");
+            preparedStatement.setString(1, usuarioBanco.getUsuario());
+            preparedStatement.setString(2, usuarioBanco.getSenha());
+            preparedStatement.setInt(3, usuarioBanco.getId());
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void excluirUsuario(Usuario usuarioBanco) {
+        PreparedStatement preparedStatement = null;
+        Conexao conexao = new Conexao();
+        Connection connection = conexao.getConexao();
+        try {
+            preparedStatement = connection.prepareStatement("DELETE FROM DBA.USUARIO_TR30 WHERE ID = ?");
+            preparedStatement.setInt(1, usuarioBanco.getId());
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }

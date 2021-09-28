@@ -24,7 +24,7 @@ public class UsuarioService {
         usuario.setUsuario(nomeDigitado);
         usuario.setSenha(senhaDigitado);
         UsuarioRepository usuarioRepository = new UsuarioRepository();
-        usuarioRepository.salvarUsuario(usuario);
+        usuarioRepository.inserirUsuario(usuario);
     }
 
     public void pesquisarUsuario() throws SQLException {
@@ -35,9 +35,27 @@ public class UsuarioService {
         usuarioRepository.pesquisarUsuario(nomeDigitado);
     }
 
-    public void editarUsuario() {
+    public void editarUsuario() throws SQLException {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Informe o Usuario a Editar:");
+        String nomeDigitado = sc.nextLine();
+        UsuarioRepository usuarioRepository = new UsuarioRepository();
+        Usuario usuarioBanco = usuarioRepository.buscarUsuarioPeloNome(nomeDigitado);
+        System.out.println("Informe nome:");
+        String novoNome = sc.nextLine();
+        System.out.println("Informe Senha:");
+        String novaSenha = sc.nextLine();
+        usuarioBanco.setUsuario(novoNome);
+        usuarioBanco.setSenha(novaSenha);
+        usuarioRepository.updateUsuario(usuarioBanco);
     }
 
-    public void excluirUsuario() {
+    public void excluirUsuario() throws SQLException {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Informe o Usuario a Excluir:");
+        String nomeDigitado = sc.nextLine();
+        UsuarioRepository usuarioRepository = new UsuarioRepository();
+        Usuario usuarioBanco = usuarioRepository.buscarUsuarioPeloNome(nomeDigitado);
+        usuarioRepository.excluirUsuario(usuarioBanco);
     }
 }
